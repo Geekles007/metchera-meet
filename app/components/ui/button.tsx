@@ -46,17 +46,18 @@ type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
-  variant?: ButtonVariantProps['variant'];
-  size?: ButtonVariantProps['size'];
+  variant?: Extract<ButtonVariantProps['variant'], string> | undefined;
+  size?: Extract<ButtonVariantProps['size'], string> | undefined;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, type = "button", ...props }, ref) => {
     const Comp = asChild ? React.Fragment : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        type={type}
         {...props}
       />
     );

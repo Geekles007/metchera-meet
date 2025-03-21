@@ -75,13 +75,13 @@ export const {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user: any }) {
+    async jwt({ token, user }) {
       if (user) {
-        token.userId = user.id;
+        token.userId = user.id as string;
       }
       return token;
     },
-    async session({ session, token }: { session: any; token: JWT }) {
+    async session({ session, token }) {
       if (session.user && token.userId) {
         session.user.id = token.userId;
       }

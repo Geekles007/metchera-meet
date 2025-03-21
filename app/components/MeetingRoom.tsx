@@ -818,9 +818,10 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
         </div>
 
         {/* Sidebars */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {showChat && (
             <motion.div
+              key="chat-panel"
               initial={{ x: 300, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 300, opacity: 0 }}
@@ -842,6 +843,7 @@ export const MeetingRoom: React.FC<MeetingRoomProps> = ({
 
           {showParticipants && (
             <motion.div
+              key="participant-list"
               initial={{ x: 300, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 300, opacity: 0 }}
